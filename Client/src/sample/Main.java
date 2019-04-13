@@ -1,9 +1,13 @@
 package sample;
 
 import sample.Decryption.DecryptRSAwithSignature;
+import sample.Encryption.MessageEncryption;
 import sample.Message.AESkeyAndSignature;
 import sample.Message.Packet;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -75,14 +79,17 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             while (true) {
                 System.out.println("Enter your message ");
-                String mess = sc.nextLine();
-                Packet packetOfMessage = new Packet(mess, sessionUsername, "Server");
+                String content = sc.nextLine();
+
+                MessageEncryption mess = new MessageEncryption(content, key);
                 objectOutputStream.writeObject("Packet");
                 objectOutputStream.flush();
+
+                Packet packetOfMessage = new Packet(mess.getMessage(), sessionUsername, "Server");
                 objectOutputStream.writeObject(packetOfMessage);
                 objectOutputStream.flush();
 
-                if (mess.equals("over")) {
+                if (content.equals("over") || content.equals("exit")) {
                     socket.close();
                     System.exit(1);
                 }
@@ -95,6 +102,11 @@ public class Main {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
             System.out.println("Error in KeyPairGenerator.getInstance(\"RSA\")");
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            System.out.println("Error in MessageEncryption() ");
+            e.printStackTrace();
+        } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }

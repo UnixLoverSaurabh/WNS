@@ -1,5 +1,6 @@
 package sample;
 
+import sample.Decryption.MessageDecryption;
 import sample.Encryption.EncryptRSAwithSignature;
 import sample.Message.AESkeyAndSignature;
 import sample.Message.Packet;
@@ -86,7 +87,8 @@ public class ServerThread extends Thread{
                 switch (switchTo) {
                     case "Packet":
                         Packet packetOfMessage = (Packet) objectInputStream.readObject();
-                        System.out.println("From " + packetOfMessage.getFrom() + " message " + packetOfMessage.getMessage());
+                        MessageDecryption messageDecryption = new MessageDecryption(packetOfMessage.getMessage(), key);
+                        System.out.println("From " + packetOfMessage.getFrom() + " message " + messageDecryption.getMessage());
                         break;
 
                     case "files":
