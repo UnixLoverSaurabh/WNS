@@ -1,5 +1,7 @@
 package sample;
 
+import sample.Message.Packet;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,13 +16,12 @@ public class Main {
         try {
             System.out.println("Client is first sending message");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject("A new message from Client");
-            objectOutputStream.flush();
-
+            Packet packet = new Packet("A new message from Client","Client", "Server");
+            objectOutputStream.writeObject(packet);
 
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            String receivedMessage = (String)objectInputStream.readObject();
-            System.out.println("\nReceived Server Message : " + receivedMessage);
+            Packet receivedMessage = (Packet)objectInputStream.readObject();
+            System.out.println("\nReceived Server sample.Message : " + receivedMessage.getMessage());
 
         } catch (IOException e) {
             System.out.println("Error in socket.getInputStream() ");

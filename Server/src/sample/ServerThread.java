@@ -1,5 +1,7 @@
 package sample;
 
+import sample.Message.Packet;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -18,13 +20,14 @@ public class ServerThread extends Thread{
 
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(this.socket.getInputStream());
-            String receivedMessage = (String)objectInputStream.readObject();
-            System.out.println("Received Client Message : " + receivedMessage);
+            Packet receivedMessage = (Packet)objectInputStream.readObject();
+            System.out.println("Received Client Message : " + receivedMessage.getMessage());
 
 
             System.out.println("\nServer is giving response message");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject("Response from server");
+            Packet packet = new Packet("Response from server","Server", "Client");
+            objectOutputStream.writeObject(packet);
             objectOutputStream.flush();
 
         } catch (IOException e) {
