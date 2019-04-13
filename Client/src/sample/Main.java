@@ -29,6 +29,7 @@ public class Main {
             sessionUsername = scanner.nextLine();
             Packet packet = new Packet("A new message from Client",sessionUsername, "Server");
             objectOutputStream.writeObject(packet);
+            objectOutputStream.flush();
 
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             Packet receivedMessage = (Packet)objectInputStream.readObject();
@@ -69,6 +70,23 @@ public class Main {
                 e.printStackTrace();
             }
 
+
+            // Now Client and Server can communicate with common AES key
+            Scanner sc = new Scanner(System.in);
+            while (true) {
+                System.out.println("Enter your message ");
+                String mess = sc.nextLine();
+                Packet packetOfMessage = new Packet(mess, sessionUsername, "Server");
+                objectOutputStream.writeObject("Packet");
+                objectOutputStream.flush();
+                objectOutputStream.writeObject(packetOfMessage);
+                objectOutputStream.flush();
+
+                if (mess.equals("over")) {
+                    socket.close();
+                    System.exit(1);
+                }
+            }
         } catch (IOException e) {
             System.out.println("Error in socket.getInputStream() ");
             e.printStackTrace();

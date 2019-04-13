@@ -5,6 +5,7 @@ import sample.Message.AESkeyAndSignature;
 import sample.Message.Packet;
 
 import javax.crypto.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -78,6 +79,26 @@ public class ServerThread extends Thread{
             objectOutputStream.flush();
             System.out.println("Common key (AES) has been sent to client");
 
+
+            // Now Client and Server can communicate with common AES key
+            while (true) {
+                String switchTo = (String) objectInputStream.readObject();
+                switch (switchTo) {
+                    case "Packet":
+                        Packet packetOfMessage = (Packet) objectInputStream.readObject();
+                        System.out.println("From " + packetOfMessage.getFrom() + " message " + packetOfMessage.getMessage());
+                        break;
+
+                    case "files":
+                        File imgFile = new File("testFile");
+                        byte[] content = (byte[]) objectInputStream.readObject();
+                        // TODO
+                        break;
+
+                    default:
+                        System.out.println("Ooops how's this possible" + switchTo);
+                }
+            }
         } catch (IOException e) {
             System.out.println("Error in socket.getInputStream() ");
             e.printStackTrace();
