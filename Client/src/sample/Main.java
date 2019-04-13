@@ -1,5 +1,7 @@
 package sample;
 
+import sample.Decryption.DecryptRSAwithSignature;
+import sample.Message.AESkeyAndSignature;
 import sample.Message.Packet;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ public class Main {
 
     private static PublicKey publicKeyServer;
     private static PrivateKey keyRSAPrivate;
+    private static Key key;
     private static String sessionUsername;
 
     public static void main(String[] args) throws IOException {
@@ -55,6 +58,16 @@ public class Main {
             objectOutputStream.writeObject(keyRSAPublic);
             objectOutputStream.flush();
             System.out.println("Public key (RSA)of server has been sent to server");
+
+            // Then receive the common key (AES) sent by server
+            try {
+                AESkeyAndSignature aeSkeyAndSignature = (AESkeyAndSignature) objectInputStream.readObject();
+                DecryptRSAwithSignature decryptRSAwithSignature = new DecryptRSAwithSignature(aeSkeyAndSignature.getCipherKeyAES(), keyRSAPrivate, publicKeyServer, aeSkeyAndSignature.getSignature());
+                key = decryptRSAwithSignature.getKey();
+                System.out.println("Common key(AES) from server received : " + key);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
 
         } catch (IOException e) {
             System.out.println("Error in socket.getInputStream() ");
