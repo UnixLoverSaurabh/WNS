@@ -9,7 +9,6 @@ public class Main {
         try(ServerSocket serverSocket = new ServerSocket(5700)){
 
             while(true){
-                System.out.println("Waiting for client");
                 new ServerThread(serverSocket.accept()).start();
             }
         }catch (IOException e){
