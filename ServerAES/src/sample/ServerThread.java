@@ -3,10 +3,12 @@ package sample;
 import sample.Decryption.MessageDecryption;
 
 import javax.crypto.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -44,9 +46,27 @@ public class ServerThread extends Thread{
             }
 
             while (true) {
-                byte[] mess = (byte[])objectInputStream.readObject();
-                MessageDecryption messageDecryption = new MessageDecryption(mess, secretKey);
-                System.out.println(messageDecryption.getPlainText());
+                String switchTo = (String)objectInputStream.readObject();
+                byte[] mess;
+                MessageDecryption messageDecryption;
+                switch (switchTo) {
+                    case "String":
+                        mess = (byte[])objectInputStream.readObject();
+                        messageDecryption = new MessageDecryption(mess, secretKey);
+                        System.out.println(messageDecryption.getPlainText());
+                        break;
+
+                    case "File":
+                        System.out.println("Hey files");
+                        File imgFile = new File("testFile.sql");
+                        mess = (byte[])objectInputStream.readObject();
+                        messageDecryption = new MessageDecryption(mess, secretKey);
+                        Files.write(imgFile.toPath(), messageDecryption.getPlainFile());
+                        break;
+
+                        default:
+                            System.out.println("How's is possible " + switchTo);
+                }
             }
 
         } catch (IOException e) {
@@ -55,15 +75,7 @@ public class ServerThread extends Thread{
         } catch (ClassNotFoundException e) {
             System.out.println("Error in objectInputStream.readObject() ");
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | BadPaddingException | IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }

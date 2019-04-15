@@ -16,6 +16,12 @@ public class MessageEncryption {
         this.cipherText = cipher.doFinal(plainText);
     }
 
+    public MessageEncryption(byte[] plainText , SecretKey key) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        this.cipherText = cipher.doFinal(plainText);
+    }
+
     public byte[] getCipherText() {
         return cipherText;
     }
