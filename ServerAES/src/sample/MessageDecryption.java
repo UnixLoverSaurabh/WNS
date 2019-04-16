@@ -1,4 +1,4 @@
-package sample.Decryption;
+package sample;
 
 import javax.crypto.*;
 import java.nio.charset.StandardCharsets;

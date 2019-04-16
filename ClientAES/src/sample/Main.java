@@ -1,7 +1,5 @@
 package sample;
 
-import sample.Encryption.MessageEncryption;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -37,9 +35,9 @@ public class Main {
             System.out.println("Enter the message");
             String mess = "Hii";
             MessageEncryption messageEncryption;
+
             while(!mess.equals("over")) {
                 mess = scanner.nextLine();
-
 
                 if(mess.equals("file")) {
                     objectOutputStream.writeObject("File");

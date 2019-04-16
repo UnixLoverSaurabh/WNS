@@ -3,18 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f3d0dd06-b5cd-4ffa-a365-530694a282b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Client/META-INF/Client.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Client/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Client/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Encryption/MessageEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Encryption/MessageEncryption.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/sample/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/sample/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServerAES/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ServerAES/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServerAES/out/production/Server/META-INF/Server.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServerAES/out/production/Server/sample/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ServerAES/out/production/Server/sample/ServerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServerAES/src/sample/Decryption/MessageDecryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServerAES/src/sample/Decryption/MessageDecryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ServerAES/src/sample/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ServerAES/src/sample/ServerThread.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="270">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Encryption/MessageEncryption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="375">
+              <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,19 +87,6 @@
               <item name="ClientAES" type="b2602c69:ProjectViewProjectNode" />
               <item name="ClientAES" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientAES" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientAES" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientAES" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientAES" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="Encryption" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -175,7 +154,7 @@
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.23604466" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23560606" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -210,8 +189,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="270">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -220,8 +199,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Encryption/MessageEncryption.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="375">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

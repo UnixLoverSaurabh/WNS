@@ -1,7 +1,5 @@
 package sample;
 
-import sample.Decryption.MessageDecryption;
-
 import javax.crypto.*;
 import java.io.File;
 import java.io.IOException;
