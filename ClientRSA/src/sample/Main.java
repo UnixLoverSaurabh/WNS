@@ -16,7 +16,7 @@ public class Main {
 
     private static String sessionUsername;
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchAlgorithmException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchPaddingException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchAlgorithmException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchPaddingException, SignatureException {
         Socket socket = new Socket("localhost", 5555);
 
         System.out.println("Enter username");
@@ -56,7 +56,9 @@ public class Main {
                 byte[] fileArray = Files.readAllBytes(file.toPath());
 
 
-                MessageEncryption messageEncryption = new MessageEncryption(fileArray, publicKeyServer);
+                MessageEncryption messageEncryption = new MessageEncryption(fileArray, publicKeyServer, privateKeyClient);
+                objectOutputStream.writeObject(messageEncryption.getSignature());
+                objectOutputStream.flush();
                 objectOutputStream.writeObject(messageEncryption.getCipherText());
                 objectOutputStream.flush();
             }
@@ -64,7 +66,9 @@ public class Main {
                 objectOutputStream.writeObject("String");
                 objectOutputStream.flush();
 
-                MessageEncryption messageEncryption = new MessageEncryption(mess, publicKeyServer);
+                MessageEncryption messageEncryption = new MessageEncryption(mess, publicKeyServer, privateKeyClient);
+                objectOutputStream.writeObject(messageEncryption.getSignature());
+                objectOutputStream.flush();
                 objectOutputStream.writeObject(messageEncryption.getCipherText());
                 objectOutputStream.flush();
             }

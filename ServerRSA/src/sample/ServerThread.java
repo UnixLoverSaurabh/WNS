@@ -47,19 +47,23 @@ public class ServerThread extends Thread {
                 String switchTo = (String) objectInputStream.readObject();
                 byte[] cipherText;
                 MessageDecryption messageDecryption;
+                byte[] signature;
+
                 switch(switchTo) {
                     case "String":
+                        signature = (byte[])objectInputStream.readObject();
                         cipherText = (byte[])objectInputStream.readObject();
                         System.out.println(cipherText);
-                        messageDecryption = new MessageDecryption(cipherText, privateKeyServer);
+                        messageDecryption = new MessageDecryption(cipherText, privateKeyServer, signature, publicKeyClient);
 
                         System.out.println(messageDecryption.getPlainMessage());
                         break;
 
                     case "File":
+                        signature = (byte[])objectInputStream.readObject();
                         cipherText = (byte[])objectInputStream.readObject();
                         System.out.println(cipherText);
-                        messageDecryption = new MessageDecryption(cipherText, privateKeyServer);
+                        messageDecryption = new MessageDecryption(cipherText, privateKeyServer, signature, publicKeyClient);
                         File file = new File("saurabh.sql");
                         Files.write(file.toPath(), messageDecryption.getPlainFile());
 
@@ -71,7 +75,7 @@ public class ServerThread extends Thread {
                 }
             }
 
-        } catch (IOException | ClassNotFoundException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (IOException | ClassNotFoundException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | SignatureException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
             System.out.println("KeyPairGenerator.getInstance(\"RSA\")");
